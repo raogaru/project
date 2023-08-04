@@ -1,0 +1,3 @@
+https://www.pedroalonso.net/blog/using-terraform-to-automate-the-deployment-of-postgresql-to-ec2
+
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@54.210.83.170

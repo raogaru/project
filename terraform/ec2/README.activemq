@@ -1,0 +1,68 @@
+https://help.talend.com/r/en-US/7.3/activemq-on-aws/configure-activemq-to-run-as-daemon
+https://linuxconfig.org/how-to-install-activemq-on-redhat-8
+
+
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@ec2-18-212-161-91.compute-1.amazonaws.com 
+
+cd ~ec2-user
+
+sudo wget "https://www.apache.org/dyn/closer.cgi?filename=/activemq/5.17.3/apache-activemq-5.17.3-bin.tar.gz&action=download" -O /tmp/apache-activemq-5.17.3-bin.tar.gz
+
+sudo cd /opt/
+
+sudo tar -xvf /tmp/apache-activemq-5.17.3-bin.tar.gz
+
+sudo mv /opt/apache-activemq-5.17.3 /opt/activemq
+
+sudo useradd activemq
+
+sudo chown -R activemq:activemq  /opt/activemq
+
+sudo vi /etc/systemd/system/activemq.service
+
+#######################################################################
+[Unit]
+Description=Apache ActiveMQ
+After=network.target
+
+[Service]
+Type=forking
+
+User=activemq
+Group=activemq
+
+ExecStart=/opt/activemq/bin/activemq start
+ExecStop=/opt/activemq/bin/activemq stop
+
+[Install]
+WantedBy=multi-user.target
+
+#######################################################################
+
+chmod 755 /etc/systemd/system/activemq.service
+
+#######################################################################
+# this change will allow to access ec2 from local machine
+vi /opt/activemq/conf/jetty.xml
+modify  in bean id=jettyPort for org.apache.activemq.web.WebConsolePort
+from <property name="host" value="127.0.0.1"/>
+from <property name="host" value="0.0.0.0"/>
+
+#######################################################################
+
+sudo systemctl daemon-reload
+
+sudo systemctl enable activemq
+
+sudo systemctl start activemq
+
+sudo systemctl status activemq
+
+# access from browser
+http://ec2-18-212-161-91.compute-1.amazonaws.com:8161/admin
+user: admin/admin
+
+#Useful links
+http://ec2-54-174-27-199.compute-1.amazonaws.com:8161/index.html
+
+

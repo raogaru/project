@@ -1,0 +1,13 @@
+#https://www.nginx.com/blog/setting-up-nginx/
+
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@ec2-18-212-161-91.compute-1.amazonaws.com
+
+sudo amazon-linux-extras list | grep nginx
+sudo amazon-linux-extras enable nginx1
+sudo yum clean metadata
+sudo yum -y install nginx
+nginx -v
+sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+

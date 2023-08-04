@@ -1,0 +1,56 @@
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@ec2-44-212-13-242.compute-1.amazonaws.com
+
+
+sudo su - 
+
+# change timezone
+timedatectl set-timezone America/New_York
+
+# update system packages
+yum update -y
+
+
+export PGBASE=/opt/postgres
+export PGUSER=postgres
+mkdir -p ${PGBASE}
+export PGDATABASE=postgres
+
+useradd ${PGUSER}
+usermod -aG wheel ${PGUSER}
+
+export PGVER=14
+export PGPORT=54${PGVER}
+export PGBIN=${PGBASE}/${PGVER}/bin
+export PGDATA=${PGBASE}/${PGVER}/data
+export PGLOG=${PGBASE}/${PGVER}/log
+mkdir -p ${PGBASE} ${PGBIN} ${PGDATA} ${PGLOG}/${PGL}/log
+chown -R ${PGUSER}:${PGUSER} ${PGBASE}
+
+echo ".include /lib/systemd/system/postgresql.service" > /etc/systemd/system/postgresql.service
+echo "[Service]" > /etc/systemd/system/postgresql.service
+echo "Environment=PGDATA=${PGDATA}" >> /etc/systemd/system/postgresql.service
+#echo "Environment=PGLOG=${PGLOG}/pgstartup.log" >> /etc/systemd/system/postgresql.service
+
+cat /etc/systemd/system/postgresql.service
+
+amazon-linux-extras enable postgresql${PGVER}
+
+yum install postgresql-server postgresql-devel postgresql-contrib -y
+#yum install postgresql-server postgresql-devel postgresql-contrib -y --installroot=${PGBIN}
+
+/usr/sbin/postgresql-new-systemd-unit --datadir=${PGDATA} --unit=postgresql@postgres${PGVER}
+
+/usr/bin/postgresql-setup --initdb --port=${PGPORT} --unit=postgresql@postgres${PGVER}
+
+# as postgres - for manual
+#/usr/bin/pg_ctl -D ${PGDATA} -l ${PGLOG}/pgstartup.log start
+
+systemctl daemon-reload
+systemctl enable postgresql@postgres${PGVER}.service
+systemctl start  postgresql@postgres${PGVER}.service
+systemctl status postgresql@postgres${PGVER}.service
+systemctl stop postgresql@postgres${PGVER}.service
+
+# Update the IPs of the address to listen from PostgreSQL config
+sed -i "59i listen_addresses = '*'" /var/lib/pgsql/data/postgresql.conf
+

@@ -1,0 +1,50 @@
+Deploy a Container Web App on Amazon EKS using CDK8S
+
+https://aws.amazon.com/tutorials/deploy-webapp-eks/
+
+
+======================================================================
+STEP-1: Create a Cluster (10 mins): This section outlines how to create EKS cluster using CDK. However we going to use Terraform to create EKS cluster
+
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+
+======================================================================
+STEP-2: Installing the AWS CDK8S CLI (5 mins)
+
+npm install -g cdk8s-cli
+
+pip3 install pipenv
+
+cd ~/GitHub/aws/eks
+mkdir cdk8s
+cd cdk8s
+cdk8s init python-app
+
+
+The CDK8s will create following files and folders structure:
+├── Pipfile
+├── Pipfile.lock
+├── cdk8s.yaml
+├── dist
+│   └── cdk8s.k8s.yaml
+├── help
+├── imports
+│   └── k8s
+│       ├── __init__.py
+│       ├── _jsii
+│       │   ├── __init__.py
+│       │   └── k8s@0.0.0.jsii.tgz
+│       └── py.typed
+└── main.py
+
+
+
+
+Creating service and deployment (5 mins): Launch your application using AWS CDK and AWS CDK8S.
+Deploy infrastructure with CDK (10 mins): Learn how to launch your infrastructure using CDK and deploy your application.
+Clean Up Resources: In this last part of the guide you learn how to clean after you are done.
+
+

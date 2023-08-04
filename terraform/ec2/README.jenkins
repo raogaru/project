@@ -1,0 +1,41 @@
+
+https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+
+cd /Users/rao/GitHub/aws/ec2
+
+terraform init
+terraform plan
+terraform apply
+
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@ec2-52-201-216-40.compute-1.amazonaws.com
+
+sudo yum update –y
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+#sudo yum upgrade -y
+
+sudo amazon-linux-extras install java-openjdk11 -y
+
+sudo yum install java-11-amazon-corretto -y
+
+sudo yum clean metadata
+
+sudo yum install jenkins -y
+
+sudo systemctl enable jenkins
+
+sudo systemctl start jenkins
+
+sudo systemctl status jenkins
+
+
+On your laptop
+http://ec2-18-212-161-91.compute-1.amazonaws.com:8080
+
+cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Create first admin user : jenkins/jenkins
+

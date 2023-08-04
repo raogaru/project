@@ -1,0 +1,4 @@
+
+ssh -i $HOME/.ssh/rao-aws-key.pem ec2-user@ec2-100-24-235-99.compute-1.amazonaws.com
+
+
