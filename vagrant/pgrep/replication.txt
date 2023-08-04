@@ -1,0 +1,90 @@
+
+https://www.cherryservers.com/blog/how-to-set-up-postgresql-database-replication
+
+# ######################################################################
+# pgrep1
+CREATE ROLE replica_user WITH REPLICATION LOGIN PASSWORD 'P@ssword321';
+
+#vi postgresql.conf
+listen_addresses=192.168.56.101
+wal_level=logical
+wal_log_hints=on
+
+#vi pg_hba.conf - add below
+host    replication     replica_user    192.168.56.102/24       md5
+
+$HOME/pgsql/bin/pg_ctl -D $HOME/data stop
+$HOME/pgsql/bin/pg_ctl -D $HOME/data -l $HOME/logs/postgres.log start
+
+
+
+
+# ######################################################################
+# pgrep2
+
+$HOME/pgsql/bin/pg_ctl -D $HOME/data stop
+rm -rf $HOME/data
+mkdir $HOME/data 
+
+
+$HOME/pgsql/bin/pg_basebackup -h 192.168.56.101 -p 5432 -U replica_user -X stream -C -S replica_1 -v -R -W -D $HOME/data
+
+chmod 750 $HOME/data
+
+#vi $HOME/data/postgresql.conf
+listen_addresses=192.168.56.102
+
+$HOME/pgsql/bin/pg_ctl -D $HOME/data -l $HOME/logs/postgres.log start
+
+
+
+# ######################################################################
+# TEST REPLICATION
+### pgrep1:	
+SELECT client_addr, state FROM pg_stat_replication;
+
+create database rao_db1;
+\c rao_db1
+create table t1(integer);
+insert into t1 values (10);
+
+### pgrep2
+\l
+\c rao_db1
+\d
+select * from t1;
+
+# ######################################################################
+# CHECK STATUS
+
+### pgrep1:
+
+select * from pg_stat_replication;
+SELECT pg_wal_lsn_diff(sent_lsn, replay_lsn) from pg_stat_replication;
+
+### pgrep2:
+select * from pg_stat_wal_receiver;
+select pg_last_wal_receive_lsn(), pg_last_wal_replay_lsn(), pg_last_xact_replay_timestamp();
+
+
+# ######################################################################
+# SWITCHOVER 
+https://dbaclass.com/article/how-to-do-switchover-in-postgres/
+
+### pgrep1:
+$HOME/pgsql/bin/pg_ctl -D $HOME/data stop
+
+### pgrep2:
+$HOME/pgsql/bin/pg_ctl -D $HOME/data promote
+
+### pgrep1:
+touch $HOME/data/standby.signal
+
+vi $HOME/data/postgresql.auto.conf
+primary_conninfo = 'user=postgres password=postgres channel_binding=prefer host=10.20.30.6 port=5444 sslmode=prefer sslcompression=0 sslsni=1 ssl_min_protocol_version=TLSv1.2 gssencmode=prefer krbsrvname=postgres target_session_attrs=any'
+wal_log_hints = 'on'
+
+$HOME/pgsql/bin/pg_ctl -D $HOME/data start
+
+
+

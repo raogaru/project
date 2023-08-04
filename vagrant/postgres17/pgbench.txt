@@ -1,0 +1,7 @@
+#initialize
+pgbench -U postgres -p 5414  -i -s 50
+
+# run clients=10 threads=2 transactions-per-client=10k
+pgbench -U postgres -p 5414 -c 10 -j 2 -t 10000 
+
+

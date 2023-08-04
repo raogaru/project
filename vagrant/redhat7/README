@@ -1,0 +1,32 @@
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/upgrading_from_rhel_7_to_rhel_8/index
+
+# ----------------------------------------
+# INSTALL leapp utility
+curl https://copr.fedorainfracloud.org/coprs/g/leapp/leapp-devel/repo/epel-7/group_leapp-leapp-devel-epel-7.repo -o /etc/yum.repos.d/group_leapp-leapp-devel-epel-7.repo
+
+yum install -y leapp
+
+subscription-manager list --installed
+
+# 
+subscription-manager register --username rao.vangaru@gmail.com --password PlanoFrisco12@
+
+# :
+subscription-manager refresh
+
+
+#Attach a subscription from any available that match the system
+subscription-manager attach --auto
+
+# subscription-manager remove --all
+# subscription-manager unregister
+# subscription-manager clean
+
+# ----------------------------------------
+
+subscription-manager repos --enable rhel-7-server-rpmssubscription-manager repos --enable rhel-7-server-extras-rpms
+
+subscription-manager repos --enable rhel-7-server-extras-rpms
+
+subscription-manager release --unset
+

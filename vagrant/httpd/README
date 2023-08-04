@@ -1,0 +1,22 @@
+vagrant ssh
+
+sudo su - 
+
+yum install httpd -y
+
+systemctl enable httpd.service
+systemctl start httpd.service
+systemctl status httpd.service
+
+chmod 
+
+netstat -tulpn | grep :80
+
+ifconfig |grep inet
+
+
+vagrant upload index.html 
+
+http://x.y.z.w:80
+
+

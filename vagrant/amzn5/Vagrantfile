@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+servers=[
+ { :hostname => "amzn1", :vmip => "192.168.56.51", :port80 => 8051, :port22 => 2251},
+ { :hostname => "amzn2", :vmip => "192.168.56.52", :port80 => 8052, :port22 => 2252},
+ { :hostname => "amzn3", :vmip => "192.168.56.53", :port80 => 8053, :port22 => 2253},
+ { :hostname => "amzn4", :vmip => "192.168.56.54", :port80 => 8054, :port22 => 2254},
+ { :hostname => "amzn5", :vmip => "192.168.56.55", :port80 => 8055, :port22 => 2255}
+]
+
+Vagrant.configure(2) do |config|
+    servers.each do |machine|
+        config.vm.define machine[:hostname] do |node|
+            node.vm.box = "bento/amazonlinux-2"
+            node.vm.hostname = machine[:hostname]
+            node.vm.network "private_network", ip: machine[:vmip]
+            node.vm.network "forwarded_port", guest: 80, host: machine[:port80]
+            node.vm.network "forwarded_port", guest: 22, host: machine[:port22]
+            node.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", 512]
+		vb.name = machine[:hostname]
+            end
+	    node.vm.provision :shell, path: "bootstrap.sh"
+        end
+    end
+end
+

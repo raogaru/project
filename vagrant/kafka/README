@@ -1,0 +1,10 @@
+vagrant ssh
+sudo su - kafka
+tar -xvzf ~/Downloads/kafka.tgz --strip 1
+
+
+
+https://blog.clairvoyantsoft.com/installation-of-an-apache-kafka-cluster-on-aws-ec2-instances-80577dcd26f3
+
+
+
