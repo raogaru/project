@@ -1,0 +1,4 @@
+Vagrant.configure("2") do |config|
+      config.vm.box = "generic/rhel8"
+      config.vm.provision "shell", inline: "echo redhat8 ready"
+end

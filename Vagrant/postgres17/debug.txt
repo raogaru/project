@@ -1,0 +1,70 @@
+alter system set log_destination = '/home/postgres/logs/postgres.log' ; 
+alter system set syslog_facility = 'LOCAL0' ; 
+alter system set syslog_ident = 'postgres' ; 
+alter system set syslog_sequence_numbers = on ; 
+alter system set syslog_split_messages = on ; 
+
+alter system set debug_print_parse = on ; 
+alter system set debug_print_rewritten = on ; 
+alter system set debug_print_plan = on ; 
+alter system set debug_pretty_print = on ; 
+alter system set log_checkpoints = off ; 
+alter system set log_connections = on ; 
+alter system set log_disconnections = on ; 
+alter system set log_duration = on ; 
+
+
+
+
+
+sdb $PGBIN/postgres
+attach <os-pid>
+
+sdb> 
+
+b PostmasterMain
+b ServerLoop
+
+b BackendStartup
+b BackendRun
+
+b exec_simple_query
+
+# Parser Stage
+b pg_parse_query
+b raw_parser
+b parse_analyze
+b parse_analyze_fixedparams
+b pgstat_report_query_id
+b pg_analyze_and_rewrite_fixedparams
+
+# Rewriter Stage
+b pg_rewrite_query
+b elog_node_display
+
+# Planner Stage
+b pg_plan_queries
+b pg_plan_query
+
+# Explain command
+b ExplainQuery
+b ExplainOneQuery
+b ExplainSeparatePlans
+
+b ExplainOnePlan
+
+# Executor Stage
+b ExecutorStart
+b pgstat_report_query_id
+b ExecutorRun
+b ExecutorFinish
+b ExecutorEnd
+
+b ExecutePlan
+b ReadyForQuery 
+
+b pq_flushpg_plan_query
+
+ReadyForQuery
+
+

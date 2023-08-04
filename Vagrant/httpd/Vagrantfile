@@ -1,0 +1,7 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/amazonlinux-2"
+            config.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", 4096]
+                vb.name = "AMZN-Linux-HTTPD"
+            end
+end

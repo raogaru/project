@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+servers=[
+ { :hostname => "pgrep1", :vmip => "192.168.56.101", :port5432 => 8401},
+ { :hostname => "pgrep2", :vmip => "192.168.56.102", :port5432 => 8402}
+]
+
+Vagrant.configure(2) do |config|
+    servers.each do |machine|
+        config.vm.define machine[:hostname] do |node|
+            node.vm.box = "bento/amazonlinux-2"
+            node.vm.hostname = machine[:hostname]
+            node.vm.network "private_network", ip: machine[:vmip]
+            node.vm.network "forwarded_port", guest: 5432, host: machine[:port5432]
+            node.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", 512]
+		vb.name = machine[:hostname]
+            end
+            node.vm.provision "file", source: "pgsql.tar", destination: "/tmp/pgsql.tar"
+	    node.vm.provision :shell, path: "bootstrap.sh"
+        end
+    end
+end
+

@@ -1,0 +1,3 @@
+find pg16 -type f -name "*.c" -exec grep "$1" {} \; -print
+
+

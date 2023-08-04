@@ -1,0 +1,64 @@
+
+Cd ~/Vagrant/FedoraLinux
+
+vi Vagrantfile
+# ========================================
+Vagrant.configure("2") do |config|
+  config.vm.box = "fedora/37-cloud-base"
+  config.vm.box_version = "37.20221105.0"
+            config.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", 4096]
+                vb.name = "Fedora-AWS-SCT"
+            end
+
+end
+# ========================================
+
+Vagrant up
+
+vagrant upload  ~/Downloads/aws-schema-conversion-tool-1.0.latest/aws-schema-conversion-tool-1.0.671-1.x86_64.rpm
+vagrant upload  ~/Downloads/ojdbc8.jar
+vagrant upload  ~/Downloads/jdk-19_linux-x64_bin.rpm
+vagrant upload  ~/Downloads/postgresql-42.2.19.jar
+vagrant upload ~/Downloads/xorg-x11-apps-7.7-30.fc34.x86_64.rpm
+
+vagrant ssh 
+sudo yum update -y
+sudo yum -y install libX11
+sudo yum -y install libglvnd-glx
+sudo yum -y install xorg-x11-apps
+sudo yum -y install xorg-x11-auth
+
+sudo yum -y localinstall aws-schema-conversion-tool-1.0.671-1.x86_64.rpm
+sudo yum -y localinstall jdk-19_linux-x64_bin.rpm
+sudo yum -y localinstall xorg-x11-apps-7.7-30.fc34.x86_64.rpm
+
+# Enable X11 
+
+sudo vi /etc/ssh/ssh_config
+ForwardAgent yes
+ForwardX11 yes
+ForwardX11Trusted yes
+
+
+sudo vi /etc/ssh/sshd_config
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalHost no
+UseLogin no
+
+sudo service ssh restart
+
+
+/opt/aws-schema-conversion-tool/bin/AWSSchemaConversionTool
+
+
+/opt/aws-schema-conversion-tool/lib/runtime/bin/java -jar /opt/aws-schema-conversion-tool/lib/app/AWSSchemaConversionTool.jar
+
+export JAVA_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=1044"
+/opt/aws-schema-conversion-tool/lib/runtime/bin/java -jar /opt/aws-schema-conversion-tool/lib/app/AWSSchemaConversionTool.jar
+
+# Interactive AWS SCT CLI
+/opt/aws-schema-conversion-tool/lib/runtime/bin/java -jar AWSSchemaConversionToolBatch.jar -type interactive
+
+

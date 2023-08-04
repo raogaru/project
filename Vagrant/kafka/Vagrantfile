@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+servers=[
+ { :hostname => "kafka", :vmip => "192.168.56.91", :port80 => 8091}
+]
+
+Vagrant.configure(2) do |config|
+    servers.each do |machine|
+        config.vm.define machine[:hostname] do |node|
+            node.vm.box = "bento/amazonlinux-2"
+            node.vm.hostname = machine[:hostname]
+            node.vm.network "private_network", ip: machine[:vmip]
+            node.vm.network "forwarded_port", guest: 9092, host: machine[:port80]
+            node.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", 2048]
+		vb.name = machine[:hostname]
+            end
+	    node.vm.provision "file", source: "kafka.service", destination: "/tmp/kafka.service"
+	    node.vm.provision "file", source: "zookeeper.service", destination: "/tmp/zookeeper.service"
+	    node.vm.provision "file", source: "server.properties", destination: "/tmp/server.properties"
+	    node.vm.provision "file", source: "zookeeper.properties", destination: "/tmp/zookeeper.properties"
+	    node.vm.provision :shell, path: "bootstrap.sh"
+        end
+    end
+end
+
