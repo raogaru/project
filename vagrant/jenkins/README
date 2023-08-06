@@ -1,0 +1,21 @@
+
+# 
+
+vagrant ssh
+
+
+# ================================================================================
+# Install Terraform
+
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+terraform --version
+terraform --help 
+
+
+sudo su - jenkins
+touch ~/.bashrc
+terraform -install-autocomplete
