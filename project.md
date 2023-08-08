@@ -133,6 +133,7 @@ Reference:
 
 https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 
+
 aws configure
 
 AWS Access Key ID [None]: EXAMPLERAOGARUINCKEY
@@ -144,8 +145,60 @@ Default region name [None]: us-east-1
 Default output format [None]: text
 
 # ################################################################################
+## AWS CLI Usage
+
+Command reference:
+
+https://docs.aws.amazon.com/cli/latest/reference/index.html
+
+aws s3 ls
+
+# ################################################################################
 ## Configure Kubectl
 
 kubectl get svc
 
 
+# ################################################################################
+## Configure Jenkins
+
+### Install Plugins
+
+Dashboard -> Manage Jenkins -> Plugins -> Available Plugins
+
+Git
+GitHub
+Docker Commons
+AWS Secrets Manager Credentials Provider
+
+
+### Configure github password in credentials
+
+Dashboard -> Manage Jenkins ->  Credentials -> System -> Global credentials -> Add Credentials 
+
+Kind: Username with Password
+username: <example-username>
+Password: <example-password>
+ID: <example-id>
+
+### Configure Environment Variables
+
+Dashboard -> Manage Jenkins ->  System -> Global properties -> Environment Variables -> Add
+
+Name : PATH+EXTRA
+
+Value: /opt/homebrew/bin
+
+Name : AWS_ACCESS_KEY_ID
+
+Value: EXAMPLERAOGARUINCKEY
+
+Name : AWS_SECRET_ACCESS_KEY
+
+Value: ExampleRaogaruIncKey/SecretAccessKeyHere
+
+Name : AWS_DEFAULT_REGION
+
+Value: us-east-1
+
+# ################################################################################
