@@ -215,14 +215,89 @@ Reference:
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 check current Kubernetes cluster :
+
 kubectl config current-context
 
 use docker-desktop context for development :
+
 kubectl config use-context docker-desktop
 
 use docker-desktop context for production :
+
 kubectl config use-context arn:aws:eks:us-east-1:999999999999:cluster/example-eks-cluster-name
 
 
+# ################################################################################
+## Create AWS ECR Repository
 
+AWS_ECR_REPO_NAME=raogaru-ecr
 
+aws ecr create-repository --region us-east-1 --repository-name $AWS_ECR_REPO_NAME
+
+# ################################################################################
+## Create AWS EKS Cluster
+
+cd $HOME/GitHub/project/terraform/eks/
+
+terraform init
+
+terraform plan
+
+terraform apply -auto-approve
+
+# ################################################################################
+## Build Docker Image
+
+Build docker image:
+
+cd project/app1-httpd
+
+docker build -t app1-httpd .
+
+Identify the docker image id:
+
+IMAGE_ID=$(docker images app1-httpd --quiet)
+
+# ################################################################################
+## Push Docker Image to AWS ECR
+
+Reference:
+
+https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
+aw
+
+Obtain ECR TOKEN :
+
+ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)
+
+AWS_ECR_URL: 999999999999.dkr.ecr.region.amazonaws.com
+
+Login to ECR with token:
+
+echo $ECR_TOKEN| docker login --username AWS --password-stdin $AWS_ECR_URL
+
+Tag the docker image
+
+docker tag $IMAGE_ID $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
+docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
+
+# ################################################################################
+## Deploy Docker Image from ECR to EKS Cluster
+
+cd $HOME/GitHub/project/app1-httpd
+
+kubectl creaet secret docker-registry regcred \
+  --docker-server=$AWS_ECR_URL \
+  --docker-username=AWS \
+  --docker-password=$(aws ecr get-login-password --region us-east-1) \
+  --namespace=default
+
+kubectl apply -f eks-app1-httpd.yaml
+
+kubectl get pods
+
+kubectl port-forward httpd-deployment-xxxxxxxxx-yyyyy 8081:80
+
+access app from localhost:8081
+
+# ################################################################################
