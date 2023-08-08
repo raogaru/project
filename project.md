@@ -21,30 +21,30 @@ Reference:
 https://desktop.github.com/
 
 # ################################################################################
-## Create Jenkins server
-
-Reference: 
-https://www.jenkins.io/download/lts/macos/
-
-brew install jenkins-lts
-
-brew upgrade jenkins-lts
-
-brew services start jenkins-lts
-
--- Browse Jenkins server
-
-http://localhost:8080
-
-Enter admin password provided by vagrant-up command
-
-# ################################################################################
-## Install Docker Desktop on Mac
+## Install Docker Desktop
 
 Reference: 
 https://docs.docker.com/desktop/install/mac-install/
 
 Download Docker.dmg
+
+
+# ################################################################################
+## Install AWS CLI
+
+Reference: 
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+https://awscli.amazonaws.com/AWSCLIV2.pkg
+
+Download AWSCLIV2.pkg
+
+Find AWSCLIV2.pkg on Finder
+
+Execute AWSCLIV2.pkg
+
+which aws
+
+ aws --version
 
 
 # ################################################################################
@@ -91,3 +91,26 @@ Reference:
 https://docs.docker.com/desktop/install/mac-install/
 https://docs.docker.com/desktop/install/linux-install/
  
+# ################################################################################
+## Create Jenkins server
+
+Reference: 
+https://www.jenkins.io/download/lts/macos/
+
+brew install jenkins-lts
+
+brew upgrade jenkins-lts
+
+brew services start jenkins-lts
+
+-- Browse Jenkins server
+
+http://localhost:8080
+
+Enter admin password provided by vagrant-up command
+
+# ################################################################################
+## 
+
+# ################################################################################
+##
