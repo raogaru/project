@@ -131,8 +131,11 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
 aws configure
 
 AWS Access Key ID [None]: EXAMPLERAOGARUINCKEY
+
 AWS Secret Access Key [None]: ExampleRaogaruIncKey/SecretAccessKeyHere
+
 Default region name [None]: us-east-1
+
 Default output format [None]: text
 
 # ################################################################################
