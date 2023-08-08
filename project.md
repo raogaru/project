@@ -6,6 +6,10 @@ CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
 # ################################################################################
 ## Github Repository
 
+Reference:
+
+https://github.com/raogaru/project/blob/main/project.md
+
 https://github.com/raogaru/project.git
 
 clone git repo:
@@ -23,6 +27,8 @@ Reference:
 
 https://desktop.github.com/
 
+File -> Clone Repository -> https://github.com/raogaru/project.git -> Clone
+
 # ################################################################################
 ## Install Docker Desktop
 
@@ -31,7 +37,6 @@ Reference:
 https://docs.docker.com/desktop/install/mac-install/
 
 Download Docker.dmg
-
 
 # ################################################################################
 ## Install AWS CLI
@@ -50,8 +55,7 @@ Execute AWSCLIV2.pkg
 
 which aws
 
- aws --version
-
+aws --version
 
 # ################################################################################
 ## Install Terraform
@@ -83,7 +87,6 @@ brew install kubectl
 
 kubectl version
 
-
 # ################################################################################
 ## Install Helm
 
@@ -92,6 +95,8 @@ Reference:
 https://helm.sh/docs/intro/install/
 
 brew install helm
+
+helm version
 
 # ################################################################################
 ## Install Docker
