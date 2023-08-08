@@ -1,5 +1,6 @@
 # ################################################################################
 # RAOGARU Demo Project
+
 CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
 
 # ################################################################################
@@ -7,7 +8,8 @@ CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
 
 https://github.com/raogaru/project.git
 
--- clone git repo
+clone git repo:
+
 mkdir -p $HOME/GitHub
 
 cd $HOME/GitHub
@@ -18,12 +20,14 @@ git clone https://github.com/raogaru/project.git
 ## Install GitHub Desktop 
 
 Reference:
+
 https://desktop.github.com/
 
 # ################################################################################
 ## Install Docker Desktop
 
 Reference: 
+
 https://docs.docker.com/desktop/install/mac-install/
 
 Download Docker.dmg
@@ -33,6 +37,7 @@ Download Docker.dmg
 ## Install AWS CLI
 
 Reference: 
+
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 https://awscli.amazonaws.com/AWSCLIV2.pkg
 
@@ -51,6 +56,7 @@ which aws
 ## Install Terraform
 
 Reference: 
+
 https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
 brew tap hashicorp/tap
@@ -67,6 +73,7 @@ terraform version
 ## Install kubectl
 
 Reference: 
+
 https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
@@ -80,6 +87,7 @@ kubectl version
 # Install Helm
 
 Reference: 
+
 https://helm.sh/docs/intro/install/
 
 brew install helm
@@ -88,6 +96,7 @@ brew install helm
 # Install Docker
 
 Reference:
+
 https://docs.docker.com/desktop/install/mac-install/
 https://docs.docker.com/desktop/install/linux-install/
  
@@ -95,6 +104,7 @@ https://docs.docker.com/desktop/install/linux-install/
 ## Create Jenkins server
 
 Reference: 
+
 https://www.jenkins.io/download/lts/macos/
 
 brew install jenkins-lts
