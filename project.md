@@ -1,5 +1,5 @@
 # ################################################################################
-# RAOGARU Demo Project
+# RAOGARU Demo Project - Installation and Configuration
 
 CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
 
@@ -164,6 +164,10 @@ kubectl get svc
 
 ### Install Plugins
 
+Reference:
+
+https://www.jenkins.io/doc/book/managing/plugins/
+
 Dashboard -> Manage Jenkins -> Plugins -> Available Plugins
 
 Git
@@ -174,6 +178,10 @@ AWS Secrets Manager Credentials Provider
 
 ### Configure github password in credentials
 
+Reference:
+
+https://www.jenkins.io/doc/book/using/using-credentials/
+
 Dashboard -> Manage Jenkins ->  Credentials -> System -> Global credentials -> Add Credentials 
 
 Kind: Username with Password
@@ -182,6 +190,10 @@ Password: <example-password>
 ID: <example-id>
 
 ### Configure Environment Variables
+
+Reference: 
+
+https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 
 Dashboard -> Manage Jenkins ->  System -> Global properties -> Environment Variables -> Add
 
