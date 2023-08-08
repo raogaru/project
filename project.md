@@ -1,12 +1,13 @@
-# project
+# ################################################################################
+# RAOGARU Demo Project
 CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
 
 # ################################################################################
-Github Repository
+## Github Repository
 
 https://github.com/raogaru/project.git
 
-# clone git repo
+-- clone git repo
 mkdir -p $HOME/GitHub
 
 cd $HOME/GitHub
@@ -14,13 +15,13 @@ cd $HOME/GitHub
 git clone https://github.com/raogaru/project.git
 
 # ################################################################################
-# GitHub Desktop 
+## Install GitHub Desktop 
 
 Reference:
 https://desktop.github.com/
 
 # ################################################################################
-# Create Jenkins server
+## Create Jenkins server
 
 Reference: 
 https://www.jenkins.io/download/lts/macos/
@@ -38,7 +39,7 @@ http://localhost:8080
 Enter admin password provided by vagrant-up command
 
 # ################################################################################
-# Install Docker Desktop on Mac
+## Install Docker Desktop on Mac
 
 Reference: 
 https://docs.docker.com/desktop/install/mac-install/
@@ -47,7 +48,7 @@ Download Docker.dmg
 
 
 # ################################################################################
-# Install Terraform
+## Install Terraform
 
 Reference: 
 https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
@@ -63,10 +64,9 @@ brew upgrade hashicorp/tap/terraform
 terraform version
 
 # ################################################################################
-# Install kubectl
+## Install kubectl
 
--- Reference: 
-
+Reference: 
 https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
@@ -83,8 +83,6 @@ Reference:
 https://helm.sh/docs/intro/install/
 
 brew install helm
-
-
 
 # ################################################################################
 # Install Docker
