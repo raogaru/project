@@ -39,6 +39,7 @@ Download Docker.dmg
 Reference: 
 
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
 https://awscli.amazonaws.com/AWSCLIV2.pkg
 
 Download AWSCLIV2.pkg
@@ -84,7 +85,7 @@ kubectl version
 
 
 # ################################################################################
-# Install Helm
+## Install Helm
 
 Reference: 
 
@@ -93,11 +94,12 @@ https://helm.sh/docs/intro/install/
 brew install helm
 
 # ################################################################################
-# Install Docker
+## Install Docker
 
 Reference:
 
 https://docs.docker.com/desktop/install/mac-install/
+
 https://docs.docker.com/desktop/install/linux-install/
  
 # ################################################################################
