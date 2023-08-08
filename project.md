@@ -154,12 +154,6 @@ https://docs.aws.amazon.com/cli/latest/reference/index.html
 aws s3 ls
 
 # ################################################################################
-## Configure Kubectl
-
-kubectl get svc
-
-
-# ################################################################################
 ## Configure Jenkins
 
 ### Install Plugins
@@ -214,3 +208,22 @@ Name : AWS_DEFAULT_REGION
 Value: us-east-1
 
 # ################################################################################
+## Configure Kubectl 
+
+Reference:
+
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+
+check current Kubernetes cluster :
+kubectl config current-context
+
+use docker-desktop context for development :
+kubectl config use-context docker-desktop
+
+use docker-desktop context for production :
+kubectl config use-context arn:aws:eks:us-east-1:999999999999:cluster/example-eks-cluster-name
+
+
+
+
