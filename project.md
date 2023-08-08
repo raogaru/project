@@ -22,13 +22,10 @@ https://desktop.github.com/
 Reference: 
 https://www.jenkins.io/download/lts/macos/
 
-Install the latest LTS version: brew install jenkins-lts
-Start the Jenkins service: brew services start jenkins-lts
-Restart the Jenkins service: brew services restart jenkins-lts
-Update the Jenkins version: brew upgrade jenkins-lts
+brew install jenkins-lts
+brew upgrade jenkins-lts
 
-cd $HOME/GitHub/project/vagrant/jenkins
-vagrant up
+brew services start jenkins-lts
 
 -- Browse Jenkins server
 http://localhost:8080
