@@ -30,11 +30,11 @@ Update the Jenkins version: brew upgrade jenkins-lts
 cd $HOME/GitHub/project/vagrant/jenkins
 vagrant up
 
-# Browse Jenkins server
+-- Browse Jenkins server
 http://localhost:8080
 Enter admin password provided by vagrant-up command
 
-# Login to jenkins host 
+-- Login to jenkins host 
 cd $HOME/GitHub/project/vagrant/jenkins
 vagrant ssh
 sudo su - 
@@ -51,21 +51,18 @@ Download Docker.dmg
 # ################################################################################
 # Install Terraform
 
-Reference: https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
+Reference: 
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli
 
-cd $HOME/GitHub/project/vagrant/jenkins
-vagrant ssh
-sudo su -
+brew tap hashicorp/tap
 
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform
-terraform --version
-terraform --help 
+brew install hashicorp/tap/terraform
 
-sudo su - jenkins
-touch ~/.bashrc
-terraform -install-autocomplete
+brew update
+
+brew upgrade hashicorp/tap/terraform
+
+terraform version
 
 # ################################################################################
 # Install kubectl
