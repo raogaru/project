@@ -214,7 +214,6 @@ Reference:
 
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
-
 check current Kubernetes cluster :
 kubectl config current-context
 
