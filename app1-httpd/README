@@ -1,0 +1,3 @@
+docker build -t rao-httpd .
+docker run -dit --name rao-httpd -p 8081:80 rao-httpd
+http://localhost:8081/
