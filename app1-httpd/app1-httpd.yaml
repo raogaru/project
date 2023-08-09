@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-httpd
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 8081
+#RAO  - port: 3000
+  selector:
+    app: hello-world-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-httpd-deployment-1
+  namespace: default
+  labels:
+    app: app1-httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1-httpd
+  template:
+    metadata:
+      labels:
+        app: app1-httpd
+    spec:
+      containers:
+      - name: app1-httpd-container
+        image: 817521490787.dkr.ecr.us-east-1.amazonaws.com/raogaru-ecr:app1-httpd-v1
+        imagePullPolicy: Always
+        ports:
+          - name: web
+            containerPort: 80
+#      imagePullSecrets:
+#          - name: regcred
