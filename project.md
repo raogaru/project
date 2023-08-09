@@ -286,17 +286,17 @@ docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
 cd $HOME/GitHub/project/app1-httpd
 
-kubectl creaet secret docker-registry regcred \
-  --docker-server=$AWS_ECR_URL \
-  --docker-username=AWS \
-  --docker-password=$(aws ecr get-login-password --region us-east-1) \
-  --namespace=default
+- kubectl creaet secret docker-registry regcred \
+-   --docker-server=$AWS_ECR_URL \
+-   --docker-username=AWS \
+-   --docker-password=$(aws ecr get-login-password --region us-east-1) \
+-   --namespace=default
 
-kubectl apply -f eks-app1-httpd.yaml
+kubectl apply -f app1-httpd.yaml
 
 kubectl get pods
 
-kubectl port-forward httpd-deployment-xxxxxxxxx-yyyyy 8081:80
+- kubectl port-forward httpd-deployment-xxxxxxxxx-yyyyy 8081:80
 
 access app from localhost:8081
 
