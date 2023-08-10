@@ -280,7 +280,7 @@ Tag the docker image:
 
 docker tag $IMAGE_ID $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
-__Push docker image to ECR:__
+**Push docker image to ECR:**
 
 docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
