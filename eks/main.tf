@@ -15,11 +15,5 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  #RAO cluster_name = "rao-demo-eks-${random_string.suffix.result}"
-  cluster_name = "rao-demo-eks"
+  cluster_name = "raogaru-eks"
 }
-
-#RAO resource "random_string" "suffix" {
-#RAO   length  = 4
-#RAO   special = false
-#RAO }
