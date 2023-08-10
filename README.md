@@ -266,7 +266,7 @@ IMAGE_ID=$(docker images app1-httpd --quiet)
 https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
 aw
 
-**Obtain ECR TOKEN :**
+#####Obtain ECR TOKEN :
 
 ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)
 
