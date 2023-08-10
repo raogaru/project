@@ -241,14 +241,26 @@ aws ecr create-repository --region us-east-1 --repository-name $AWS_ECR_REPO_NAM
 ##### use terraform to create EKS cluster 
 
 ``` 
-cd $HOME/GitHub/project/terraform/eks/ ```
+cd $HOME/GitHub/project/eks/ 
+```
 
+##### initialize terraform
 
+```
 terraform init
+```
 
+##### verify execution lan
+
+```
 terraform plan
+```
 
+##### kick-off execution
+
+```
 terraform apply -auto-approve
+```
 
 
 # ################################################################################
