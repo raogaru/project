@@ -268,9 +268,9 @@ aw
 
 ##### Obtain ECR TOKEN :
 
-ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)
-
-AWS_ECR_URL: 999999999999.dkr.ecr.region.amazonaws.com
+> ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)
+> 
+> AWS_ECR_URL: 999999999999.dkr.ecr.region.amazonaws.com
 
 **Login to ECR with token:**
 
