@@ -276,9 +276,12 @@ Login to ECR with token:
 
 echo $ECR_TOKEN| docker login --username AWS --password-stdin $AWS_ECR_URL
 
-Tag the docker image
+Tag the docker image:
 
 docker tag $IMAGE_ID $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
+
+Push docker image to ECR:
+
 docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
 # ################################################################################
