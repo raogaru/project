@@ -230,9 +230,10 @@ kubectl config use-context arn:aws:eks:us-east-1:999999999999:cluster/example-ek
 # ################################################################################
 ## Create AWS ECR Repository
 
+```
 AWS_ECR_REPO_NAME=raogaru-ecr
-
 aws ecr create-repository --region us-east-1 --repository-name $AWS_ECR_REPO_NAME
+```
 
 # ################################################################################
 ## Create AWS EKS Cluster
