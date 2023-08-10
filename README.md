@@ -261,22 +261,22 @@ IMAGE_ID=$(docker images app1-httpd --quiet)
 # ################################################################################
 ## Push Docker Image to AWS ECR
 
-Reference:
+**Reference:**
 
 https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html
 aw
 
-Obtain ECR TOKEN :
+**Obtain ECR TOKEN :**
 
 ECR_TOKEN=$(aws ecr get-login-password --region us-east-1)
 
 AWS_ECR_URL: 999999999999.dkr.ecr.region.amazonaws.com
 
-Login to ECR with token:
+**Login to ECR with token:**
 
 echo $ECR_TOKEN| docker login --username AWS --password-stdin $AWS_ECR_URL
 
-Tag the docker image:
+**Tag the docker image:**
 
 docker tag $IMAGE_ID $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
