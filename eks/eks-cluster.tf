@@ -35,33 +35,33 @@ module "eks" {
     }
 
 # ========================================
-    two = {
-      name                    = "demo-eks-ng2"
-      instance_types          = ["t2.micro"]
-      min_size                = 1
-      max_size                = 4
-      desired_size            = 2
-      pre_bootstrap_user_data = <<-EOT
-      echo 'foo bar node group2'
-      EOT
-      vpc_security_group_ids = [
-        aws_security_group.demo_eks_ng2_sg.id
-      ]
-    }
-# ========================================
-    three = {
-      name                    = "demo-eks-ng3"
-      instance_types          = ["t2.micro"]
-      min_size                = 1
-      max_size                = 4
-      desired_size            = 2
-      pre_bootstrap_user_data = <<-EOT
-      echo 'foo bar node group3'
-      EOT
-      vpc_security_group_ids = [
-        aws_security_group.demo_eks_ng1_sg.id
-      ]
-    }
+#    two = {
+#      name                    = "demo-eks-ng2"
+#      instance_types          = ["t2.micro"]
+#      min_size                = 1
+#      max_size                = 4
+#      desired_size            = 2
+#      pre_bootstrap_user_data = <<-EOT
+#      echo 'foo bar node group2'
+#      EOT
+#      vpc_security_group_ids = [
+#        aws_security_group.demo_eks_ng2_sg.id
+#      ]
+#    }
+## ========================================
+#    three = {
+#      name                    = "demo-eks-ng3"
+#      instance_types          = ["t2.micro"]
+#      min_size                = 1
+#      max_size                = 4
+#      desired_size            = 2
+#      pre_bootstrap_user_data = <<-EOT
+#      echo 'foo bar node group3'
+#      EOT
+#      vpc_security_group_ids = [
+#        aws_security_group.demo_eks_ng1_sg.id
+#      ]
+#    }
 # ========================================
 
 
