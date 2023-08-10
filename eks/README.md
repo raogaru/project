@@ -1,5 +1,5 @@
 # ################################################################################
-##Terraform to create EKS cluster
+## Terraform to create EKS cluster
 
 cd $HOME/GitHub/project/eks
 
