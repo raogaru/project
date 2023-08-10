@@ -58,6 +58,15 @@ which aws
 aws --version
 
 # ################################################################################
+## Install Docker
+
+Reference:
+
+https://docs.docker.com/desktop/install/mac-install/
+
+https://docs.docker.com/desktop/install/linux-install/
+
+# ################################################################################
 ## Install Terraform
 
 Reference: 
@@ -98,15 +107,15 @@ brew install helm
 
 helm version
 
-# ################################################################################
-## Install Docker
-
-Reference:
-
-https://docs.docker.com/desktop/install/mac-install/
-
-https://docs.docker.com/desktop/install/linux-install/
  
+# ################################################################################
+## Install Maven
+
+brew install maven
+
+mvn --version
+
+
 # ################################################################################
 ## Create Jenkins server
 
@@ -262,6 +271,16 @@ terraform plan
 ```
 terraform apply -auto-approve
 ```
+
+# ################################################################################
+## Build Application
+
+
+Build Java code using Maven
+
+
+
+
 
 
 # ################################################################################
