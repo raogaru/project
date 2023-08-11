@@ -97,6 +97,13 @@ brew install kubectl
 kubectl version
 
 # ################################################################################
+## Install eksctl
+
+brew install eksctl
+
+eksctl version
+
+# ################################################################################
 ## Install Helm
 
 Reference: 

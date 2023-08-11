@@ -5,14 +5,8 @@ terraform {
       version = "~> 4.46.0"
     }
 
-    #RAO    random = {
-    #RAO      source  = "hashicorp/random"
-    #RAO      version = "~> 3.4.3"
-    #RAO    }
-
     tls = {
       source = "hashicorp/tls"
-      #RAO      version = "~> 4.0.4"
     }
 
     cloudinit = {
