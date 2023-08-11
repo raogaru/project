@@ -2,18 +2,22 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app1-httpd-service
-  namespace: production
+  namespace: default
+  labels:
+    name: app1-httpd
 spec:
   type: NodePort
-  ports:
-  - port: 3000
   selector:
-    app: hello-world-app
+    app: app1-httpd
+  ports:
+    - port: 80
+      nodePort: 30080
+      name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-httpd-deployment
+  name: app1-httpd-deploy
   namespace: default
   labels:
     app: app1-httpd
@@ -28,7 +32,7 @@ spec:
         app: app1-httpd
     spec:
       containers:
-      - name: app1-httpd-container
+      - name: app1-httpd
         image: 817521490787.dkr.ecr.us-east-1.amazonaws.com/raogaru-ecr:app1-httpd
         imagePullPolicy: Always
         ports:
