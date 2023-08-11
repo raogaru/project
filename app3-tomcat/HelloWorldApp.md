@@ -1,4 +1,8 @@
 
+Reference:
+
+https://husbch.medium.com/mini-project-deploying-java-application-with-tomcat-bd7d96bfcc7
+
 mvn --version
 
 mvn archetype:generate -DgroupId=com.app.example -DartifactId=HelloWorldApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -16,4 +20,5 @@ cd ..
 cp HelloWorldApp/target/HelloWorld-1.war .
 
 rm -rf HelloWorldApp
+
 
