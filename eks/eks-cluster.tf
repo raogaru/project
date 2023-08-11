@@ -50,19 +50,19 @@ module "eks" {
       ]
     }
 ## ========================================
-    three = {
-      name                    = "raogaru-eks-ng3"
-      instance_types          = ["t2.micro"]
-      min_size                = 1
-      max_size                = 4
-      desired_size            = 2
-      pre_bootstrap_user_data = <<-EOT
-      echo 'foo bar node group3'
-      EOT
-      vpc_security_group_ids = [
-        aws_security_group.raogaru_eks_ng1_sg.id
-      ]
-    }
+#    three = {
+#      name                    = "raogaru-eks-ng3"
+#      instance_types          = ["t2.micro"]
+#      min_size                = 1
+#      max_size                = 4
+#      desired_size            = 2
+#      pre_bootstrap_user_data = <<-EOT
+#      echo 'foo bar node group3'
+#      EOT
+#      vpc_security_group_ids = [
+#        aws_security_group.raogaru_eks_ng1_sg.id
+#      ]
+#    }
 # ========================================
 
 
