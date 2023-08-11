@@ -1,1 +1,5 @@
 vagrant/*/.vagrant
+eks/.terraform
+eks/.terraform.lock.hcl
+eks/terraform.tfstate
+eks/terraform.tfstate.backup
