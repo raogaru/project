@@ -1,7 +1,9 @@
 ## Jenkins Jobs/Pipelines
 
-1. Jenkins job to build EKS using terraform
+1. Jenkins job to build the EKS cluster using Terraform
 
 2. Jenkins job to create ECR repository
 
-3. Jenkins CI/CD pipeline - build docker images, register with ECR and deploy to EKS
+3. Jenkins CI pipeline - Build Docker images, register with ECR repository
+
+4. Jenkins CD pipeline - Deploy Docker containers to EKS cluster
