@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        upstream(upstreamProjects:"CIPipeline", threshold:hudson.model.Result.SUCCESS)
+    }
     stages {
         stage("stage 1 git scm") {
             steps {

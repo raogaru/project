@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        cron("H 0 * * *")
+    }
     stages {
         stage("stage 1 git scm") {
             steps {
