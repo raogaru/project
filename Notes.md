@@ -1,6 +1,6 @@
 # Miscellaneous Notes
 
 * The cluster needs to be destroyed manually, because “terraform destroy” cannot be run in the same pipeline (because the cluster would be immediately destroyed) OR a different pipeline (since the state of the cluster would not be saved for Terraform) as the “terraform init/plan/apply” commands
-* When an image's container is deployed to the EKS cluster, it creates both a deployment and a service; in order to end both processes at once, such as if the application itself is being temporarily/permanently shut down (but not if there is simply a code change), then we can run “kubectl delete -f <manifest file name>” (since both manifests are in one manifest file)
+* When an image's container is deployed to the EKS cluster, it creates both a deployment and a service; in order to end both processes at once, such as if the application itself is being temporarily/permanently shut down (but not if there is simply a code change), then we can run “kubectl delete -f [manifest file name]” (since both manifests are in one manifest file)
 * A test phase in the pipeline would likely involve using multiple branches on GitHub to avoid pushing a commit to the main branch before the code is fully tested, and it could also involve creating another namespace in the EKS cluster called “testing” in which rigorous testing of the application would be conducted
 * All of the Jenkins jobs are in the form of pipelines, as they are easier to export and store externally as code (in the form of Jenkinsfiles) than other types of jobs, such as freestyle projects
