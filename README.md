@@ -332,6 +332,9 @@ docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 # ################################################################################
 ## Deploy Docker Image from ECR to EKS Cluster
 
+
+kubectl config use-context arn:aws:eks:us-east-1:999999999999:cluster/example-eks-cluster-name
+
 cd $HOME/GitHub/project/app1-httpd
 
 - kubectl creaet secret docker-registry regcred \
@@ -341,6 +344,10 @@ cd $HOME/GitHub/project/app1-httpd
 -   --namespace=default
 
 kubectl apply -f app1-httpd.yaml
+
+kubectl get services
+
+kubectl get deployment
 
 kubectl get pods
 
