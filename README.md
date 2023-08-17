@@ -1,8 +1,8 @@
 # CI/CD Pipeline for Containerized Applications on the AWS Cloud
 
-[Link to demo video](https://www.youtube.com/watch?v=tR4UmLa0-Qo)
+### [Link to demo video](https://www.youtube.com/watch?v=tR4UmLa0-Qo)
 
-[Link to slideshow (with diagrams)](https://docs.google.com/presentation/d/15Ocx_kM3NZPsPPqHI3kOabuNE8D6miDCyZqYyA8qD-o/edit?usp=sharing)
+### [Link to slideshow (with diagrams)](https://docs.google.com/presentation/d/15Ocx_kM3NZPsPPqHI3kOabuNE8D6miDCyZqYyA8qD-o/edit?usp=sharing)
 
 ## Description
 
