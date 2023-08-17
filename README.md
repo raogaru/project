@@ -6,7 +6,9 @@
 
 ## Description
 
-This project consists of a CI/CD pipeline for applications hosted on the AWS cloud. This means that given a repository of source code for an application, such as a codebase hosted on GitHub, the pipeline deploys the application into a Kubernetes cluster, managed by AWS EKS. In addition, the pipeline continuously integrates/continuously delivers any changes to the application source code by updating the Kubernetes cluster which represents the production environment. Technologies used: Jenkins, Terraform, AWS services (EKS, ECR, EC2), Docker, Kubernetes
+This project consists of a CI/CD pipeline for applications hosted on the AWS cloud. This means that given a repository of source code for an application, such as a codebase hosted on GitHub, the pipeline deploys the application into a Kubernetes cluster, managed by AWS EKS. In addition, the pipeline continuously integrates/continuously delivers any changes to the application source code by updating the Kubernetes cluster which represents the production environment.
+
+Technologies used: Jenkins, Terraform, AWS services (EKS, ECR, EC2), Docker, Kubernetes
 
 ## Additional Info
 
