@@ -1,9 +1,7 @@
-# ################################################################################
-# RAOGARU Demo Project - Installation and Configuration
+# Pipeline Project - Installation and Configuration
 
-CI/CD Pipeline using Jenkins, Terraform, AWS services, Docker, and Helm
+CI/CD Pipeline using Jenkins, Terraform, AWS services, and Docker
 
-# ################################################################################
 ## Github Repository
 
 Reference:
@@ -20,7 +18,6 @@ cd $HOME/GitHub
 
 git clone https://github.com/raogaru/project.git
 
-# ################################################################################
 ## Install GitHub Desktop 
 
 Reference:
@@ -29,7 +26,6 @@ https://desktop.github.com/
 
 File -> Clone Repository -> https://github.com/raogaru/project.git -> Clone
 
-# ################################################################################
 ## Install Docker Desktop
 
 Reference: 
@@ -38,7 +34,6 @@ https://docs.docker.com/desktop/install/mac-install/
 
 Download Docker.dmg
 
-# ################################################################################
 ## Install AWS CLI
 
 Reference: 
@@ -57,7 +52,6 @@ which aws
 
 aws --version
 
-# ################################################################################
 ## Install Docker
 
 Reference:
@@ -66,7 +60,6 @@ https://docs.docker.com/desktop/install/mac-install/
 
 https://docs.docker.com/desktop/install/linux-install/
 
-# ################################################################################
 ## Install Terraform
 
 Reference: 
@@ -83,7 +76,6 @@ brew upgrade hashicorp/tap/terraform
 
 terraform version
 
-# ################################################################################
 ## Install kubectl
 
 Reference: 
@@ -96,14 +88,12 @@ brew install kubectl
 
 kubectl version
 
-# ################################################################################
 ## Install eksctl
 
 brew install eksctl
 
 eksctl version
 
-# ################################################################################
 ## Install Helm
 
 Reference: 
@@ -115,7 +105,6 @@ brew install helm
 helm version
 
  
-# ################################################################################
 ## Install Maven
 
 brew install maven
@@ -123,7 +112,6 @@ brew install maven
 mvn --version
 
 
-# ################################################################################
 ## Create Jenkins server
 
 Reference: 
@@ -142,7 +130,6 @@ http://localhost:8080
 
 Enter admin password provided by vagrant-up command
 
-# ################################################################################
 ## Configure AWS CLI
 
 Reference:
@@ -160,7 +147,6 @@ Default region name [None]: us-east-1
 
 Default output format [None]: text
 
-# ################################################################################
 ## AWS CLI Usage
 
 Command reference:
@@ -169,7 +155,6 @@ https://docs.aws.amazon.com/cli/latest/reference/index.html
 
 aws s3 ls
 
-# ################################################################################
 ## Configure Jenkins
 
 ### Install Plugins
@@ -207,23 +192,58 @@ https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 
 Dashboard -> Manage Jenkins ->  System -> Global properties -> Environment Variables -> Add
 
-Name : PATH+EXTRA
+**Name:** PATH+EXTRA (important to be named this so Jenkins can work with Docker + other technologies)
 
-Value: /opt/homebrew/bin
+**Value:** /opt/homebrew/bin
 
-Name : AWS_ACCESS_KEY_ID
+**Name:** AWS_ACCESS_KEY_ID
 
-Value: EXAMPLERAOGARUINCKEY
+**Value:** exampleAWSAccessKeyID
 
-Name : AWS_SECRET_ACCESS_KEY
+**Name:** AWS_SECRET_ACCESS_KEY
 
-Value: ExampleRaogaruIncKey/SecretAccessKeyHere
+**Value:** exampleSecretAccessKey/exampleKeySuffix
 
-Name : AWS_DEFAULT_REGION
+**Name:** AWS_ACCOUNT_NUMBER
 
-Value: us-east-1
+**Value:** 000000000000
 
-# ################################################################################
+**Name:** AWS_DEFAULT_REGION
+
+**Value:** us-east-1
+
+**Name:** APP1_NAME
+
+**Value:** app1-httpd
+
+**Name:** APP2_NAME
+
+**Value:** app2-nginx
+
+**Name:** APP3_NAME
+
+**Value:** app3-tomcat
+
+**Name:** AWS_ECR_REPO_NAME
+
+**Value:** raogaru-ecr
+
+**Name:** AWS_ECR_URL
+
+**Value:** ${AWS_ACCOUNT_NUMBER}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+
+**Name:** AWS_EKS_CLUSTER_NAME
+
+**Value:** raogaru-eks
+
+**Name:** AWS_EKS_ARN
+
+**Value:** arn:aws:eks:${AWS_DEFAULT_REGION}:${AWS_ACCOUNT_NUMBER}:cluster/${AWS_EKS_CLUSTER_NAME}
+
+**Name:** EKS_NAMESPACE
+
+**Value:** production
+
 ## Configure Kubectl 
 
 Reference:
@@ -242,8 +262,6 @@ use docker-desktop context for production :
 
 kubectl config use-context arn:aws:eks:us-east-1:999999999999:cluster/example-eks-cluster-name
 
-
-# ################################################################################
 ## Create AWS ECR Repository
 
 ```
@@ -251,7 +269,6 @@ AWS_ECR_REPO_NAME=raogaru-ecr
 aws ecr create-repository --region us-east-1 --repository-name $AWS_ECR_REPO_NAME
 ```
 
-# ################################################################################
 ## Create AWS EKS Cluster
 
 
@@ -267,7 +284,7 @@ cd $HOME/GitHub/project/eks/
 terraform init
 ```
 
-##### verify execution lan
+##### verify execution plan
 
 ```
 terraform plan
@@ -279,7 +296,6 @@ terraform plan
 terraform apply -auto-approve
 ```
 
-# ################################################################################
 ## Build Application
 
 
@@ -290,7 +306,6 @@ Build Java code using Maven
 
 
 
-# ################################################################################
 ## Build Docker Image
 
 Build docker image:
@@ -303,7 +318,6 @@ Identify the docker image id:
 
 IMAGE_ID=$(docker images app1-httpd --quiet)
 
-# ################################################################################
 ## Push Docker Image to AWS ECR
 
 **Reference:**
@@ -329,7 +343,6 @@ docker tag $IMAGE_ID $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
 docker push $AWS_ECR_URL/$AWS_ECR_REPO_NAME:app1-httpd-v1
 
-# ################################################################################
 ## Deploy Docker Image from ECR to EKS Cluster
 
 
@@ -354,5 +367,3 @@ kubectl get pods
 - kubectl port-forward httpd-deployment-xxxxxxxxx-yyyyy 8081:80
 
 access app from localhost:8081
-
-# ################################################################################
