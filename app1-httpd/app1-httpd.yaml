@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: app1-httpd
-        image: 817521490787.dkr.ecr.us-east-1.amazonaws.com/raogaru-ecr:app1-httpd
+        image: 999999999999.dkr.ecr.us-east-1.amazonaws.com/raogaru-ecr:app1-httpd
         imagePullPolicy: Always
         ports:
           - name: web
